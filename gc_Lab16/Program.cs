@@ -7,7 +7,28 @@ namespace playRPS
     {
         static void Main(string[] args)
         {
-            Intro();                        
+            bool isPlayAgain = false;
+
+            do
+            {
+                Intro();
+                Console.WriteLine();
+                Console.Write("Would you like to play again? (y/n): ");
+                string response = Console.ReadLine().ToLower().Trim();
+                Console.WriteLine();
+
+                if (response == "y")
+                {
+                    isPlayAgain = true;
+                }
+
+                else
+                {
+                    isPlayAgain = false;
+                }
+            }
+
+            while (isPlayAgain == true);
 
         }   
         
@@ -32,13 +53,8 @@ namespace playRPS
             int championSelection;
             int.TryParse(champion, out championSelection);
 
-            int nameWins = 0;
-            int brockWins = 0;
-
             if (championSelection == 1)
             {
-                do
-                {
                     Brock b = new Brock("Brock");
                     Human h = new Human(name);
 
@@ -55,16 +71,12 @@ namespace playRPS
                     else if (output == "Paper")
                     {                       
                         Console.WriteLine(name + " is the winner!");
-                        nameWins ++;
                     }
 
                     else if (output == "Scissors")
                     {
-                        Console.WriteLine(b + " is the winner!");
-                        brockWins++;
+                        Console.WriteLine("Brock is the winner!");
                     }
-                }
-                while (nameWins < 3 || brockWins < 3);
             }
 
             else if (championSelection == 2)
@@ -76,6 +88,65 @@ namespace playRPS
                 string output = h.GetRPS();
                 Console.WriteLine(output);
                 Console.WriteLine(output1);
+
+                if (output == "Rock")
+                {
+                    if (output1 == "Rock")
+                    {
+                        Console.WriteLine("Draw!");
+                    }
+
+                    else if (output1 == "Paper")
+                    {
+                        Console.WriteLine("Misty is the Winner!");
+                    }
+
+                    else if (output1 == "Scissors")
+                    {
+                        Console.WriteLine(name + " is the Winner!");
+                    }
+                }
+
+                else if (output == "Paper")
+                {
+                    if (output1 == "Rock")
+                    {
+                        Console.WriteLine(name + " is the Winner!");
+                    }
+
+                    else if (output1 == "Paper")
+                    {
+                        Console.WriteLine("Draw!");
+                    }
+
+                    else if (output1 == "Scissors")
+                    {
+                        Console.WriteLine("Misty is the Winner!");
+                    }
+                }
+
+                else if (output == "Scissors")
+                {
+                    if (output1 == "Rock")
+                    {
+                        Console.WriteLine("Misty is the Winner!");
+                    }
+
+                    else if (output1 == "Paper")
+                    {
+                        Console.WriteLine(name + " is the Winner!");
+                    }
+
+                    else if (output1 == "Scissors")
+                    {
+                        Console.WriteLine("Draw!");
+                    }
+                }
+
+                else
+                {
+                    Console.WriteLine("Incorrect input!");
+                }
             }
         }
     }
